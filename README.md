@@ -25,6 +25,22 @@ Bài tập đã hoàn thành phần cấu hình xác thực cho ứng dụng Nex
 
 Giao diện `app/page.tsx` và cấu trúc thư mục được giữ nguyên theo yêu cầu bài tập. NextAuth tự đọc các biến môi trường `AUTH_SECRET`, `AUTH_GITHUB_ID` và `AUTH_GITHUB_SECRET`.
 
+## Đối chiếu yêu cầu bài tập
+
+| Yêu cầu | Kết quả |
+| --- | --- |
+| Thay hàm giả, import NextAuth và GitHub provider | Đã hoàn thành trong `auth.ts` |
+| Export `handlers`, `auth`, `signIn`, `signOut` | Đã hoàn thành |
+| Session stateless bằng JWT, không lưu session trong database | Đã cấu hình `strategy: "jwt"`, không sử dụng database adapter |
+| Chỉ đăng nhập bằng GitHub OAuth | Danh sách provider chỉ có GitHub |
+| Không thêm thông tin nhạy cảm vào JWT | Giữ payload mặc định, không thêm access token hoặc secret |
+| Route Handler export `GET` và `POST` | Đã hoàn thành từ `handlers` |
+| Giữ nguyên cấu trúc thư mục và `app/page.tsx` | Đã đối chiếu với mã nguồn trước khi hoàn thành |
+| Không commit `.env.local` | File được Git bỏ qua và không nằm trong danh sách file được theo dõi |
+| Đăng nhập thành công, hiển thị tên và email | Đã xác nhận qua ảnh chạy localhost do người dùng cung cấp |
+
+**Phần triển khai và kết quả đăng nhập theo README gốc đã hoàn thành.** Kiểm tra duy trì phiên sau khi tải lại trang, đăng xuất trên trình duyệt và tạo pull request nộp bài chưa có bằng chứng xác nhận trong lần đối chiếu này.
+
 ## Cài đặt và chạy
 
 ### 1. Cài dependencies
@@ -109,7 +125,7 @@ Các kiểm tra đã thực hiện khi hoàn thành cấu hình:
 - Khi chưa đăng nhập, API session trả về `null` và trang đăng nhập hiển thị GitHub.
 - POST `/api/auth/signout` với CSRF token hợp lệ: phản hồi HTTP 200 và trả URL chuyển hướng về trang chủ.
 
-Luồng đăng nhập GitHub thực tế cần kiểm tra bằng OAuth App của bạn; các kiểm tra trên không xác nhận việc cấp quyền và callback với tài khoản GitHub thật.
+Người dùng đã chạy đăng nhập GitHub thực tế trên localhost và cung cấp ảnh trang chủ hiển thị **Đã đăng nhập thành công!**, tên và email. Đây là bằng chứng cho kết quả đăng nhập yêu cầu trong README gốc. Chưa có xác nhận về tải lại trang và thao tác đăng xuất với phiên GitHub thật; thực hiện các bước trên để kiểm tra đầy đủ vòng đời phiên.
 
 Chạy lại build hoặc lint bằng:
 
@@ -131,10 +147,10 @@ Trên PowerShell nếu bị chặn script, thay `npm` bằng `npm.cmd` và `npx`
 Sau khi kiểm tra đăng nhập và đăng xuất, commit và push các file của bài tập lên repository fork:
 
 ```powershell
- git add auth.ts "app/api/auth/[...nextauth]/route.ts" package-lock.json README.md
- git diff --cached --stat
- git commit -m "Hoan thanh bai tap NextAuth"
- git push origin main
+git add auth.ts "app/api/auth/[...nextauth]/route.ts" package-lock.json README.md
+git diff --cached --stat
+git commit -m "Hoan thanh bai tap NextAuth"
+git push origin main
 ```
 
 Nếu code đã được commit trước đó, lệnh trên sẽ tạo commit cho các thay đổi còn lại. Trên GitHub, mở repository fork → **Contribute → Open pull request** hoặc **Compare & pull request**, kiểm tra repository và nhánh đích, rồi bấm **Create pull request** để nộp bài.
