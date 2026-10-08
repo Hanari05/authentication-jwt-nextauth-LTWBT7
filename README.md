@@ -141,16 +141,3 @@ npx eslint auth.ts "app/api/auth/[...nextauth]/route.ts"
 ```
 
 Trên PowerShell nếu bị chặn script, thay `npm` bằng `npm.cmd` và `npx` bằng `npx.cmd`. Build cần kết nối tới Google Fonts để tải các font Geist trong layout có sẵn. Khi chạy production, đặt `AUTH_URL` phù hợp với địa chỉ ứng dụng để tránh lỗi `UntrustedHost`.
-
-## Nộp bài
-
-Sau khi kiểm tra đăng nhập và đăng xuất, commit và push các file của bài tập lên repository fork:
-
-```powershell
-git add auth.ts "app/api/auth/[...nextauth]/route.ts" package-lock.json README.md
-git diff --cached --stat
-git commit -m "Hoan thanh bai tap NextAuth"
-git push origin main
-```
-
-Nếu code đã được commit trước đó, lệnh trên sẽ tạo commit cho các thay đổi còn lại. Trên GitHub, mở repository fork → **Contribute → Open pull request** hoặc **Compare & pull request**, kiểm tra repository và nhánh đích, rồi bấm **Create pull request** để nộp bài.
